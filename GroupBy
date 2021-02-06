@@ -1,1 +1,17 @@
+--1. Display the maximum, minimum and average salary and commission earned.
+select max(sal), min(sal), avg(sal),sum(comm) from emp;
 
+--2. Display the department number, total salary payout and total commission payout for each department
+select deptno,sum(sal),sum(comm) from emp group by deptno;
+
+--3. Display the department number, total salary payout and total commission payout for each department that pays at least one employee commission.
+select deptno,sum(sal),sum(comm) from emp where comm>0 group by deptno;
+
+--4.Display the department number and number of clerks in each department.
+select deptno,count(*) from emp where job='CLERK' group by deptno;
+
+--5.Display the department number and total salary of employees in each department that employs four or more people.
+select deptno,sum(sal) from emp group by deptno having count(*)>4;
+
+--6. Display the employee number of each employee who manages other employees with the number of people he or she manages.
+select m.mgr,count(m.mgr) as noOfEmp,e.ename from emp e join emp m on e.empno=m.mgr group by m.mgr,e.ename;
