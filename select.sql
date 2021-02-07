@@ -31,7 +31,7 @@ select ename,hiredate from emp order by hiredate;
 select ename,sal from emp order by sal desc;
 
 --11. Display `ename of department deptno earned commission $' for each salesman in reverse salary order
- select ename||deptno||comm as "EMP DATA" from emp order by sal desc;
+ select ename||' of department '||deptno||' earned commision '||nvl(comm,0) as "EMP DATA" from emp order by sal desc;
 
 --12. Display the department numbers of all departments employing a clerk.
 select d.dname,d.deptno from dept d, emp e where d.deptno=e.deptno and job='CLERK';
