@@ -35,6 +35,8 @@ select e1.ename,e1.mgr,e2.ename as mgrname from emp e1 left join emp e2 on e1.mg
 --6.Display the employee number and name of each employee who manages other employees with the number of people he or she manages.
 select e.ename as mgrname,e.empno as mgrno,(select count(*) from emp where mgr=e.empno) as countemmp from emp e order by countemmp desc;
 --doubt:how to remove records with 0 as count from output
+--Solution: use one more select query to get columns as alias names.
+select mgrname,mgrno,countemmp from (select e.ename as mgrname,e.empno as mgrno,(select count(*) from emp where mgr=e.empno) as countemmp from emp e order by countemmp desc) where countemmp>0;
 --OR
 select m.mgr,count(m.mgr) as noOfEmp,e.ename as mgrname from emp e join emp m on e.empno=m.mgr group by m.mgr,e.ename;
 
