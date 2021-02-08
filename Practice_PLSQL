@@ -10,3 +10,22 @@ select ename,empno,sal,dname,loc into v_ename,v_empno,v_sal,v_dname,v_loc from e
 dbms_output.put_line(v_ename||v_empno||v_sal||v_dname||v_loc);
 end;
 /
+
+
+
+--USER DEFINED DATATYPE
+--create V_UD_RES (not case sensitive) as a dataype. Create v_RES variable with V_UD_RES as datatype.
+
+  1  declare
+  2  type V_UD_RES is RECORD(empno number(10),
+  3  ename varchar2(20),            --static datatype allocation
+  4  sal number(10,2),
+  5  dname dept.dname%type,         --reference datatpe allocation
+  6  loc dept.loc%type);
+  7  v_RES v_UD_RES;
+  8  begin
+  9  select e.empno,ename, sal,dname,loc into v_RES from emp e natural join dept where empno=7566;
+ 10  dbms_output.put_line(v_RES.ename||' '||v_RES.empno||' '||v_RES.sal||' '||v_RES.dname||' '||v_RES.loc);
+ 11* end;
+ 12  /
+JONES 7566 2975 RESEARCH DALLAS                                               --output
