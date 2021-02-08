@@ -34,31 +34,39 @@ JONES 7566 2975 RESEARCH DALLAS                                               --
 
 
 
---if else
 
   1  declare
   2  v_a number;
   3  v_b number;
-  4  begin
-  5  v_a:=&v_a;
-  6  v_b:=&v_b;
-  7  if(v_a=v_b)
-  8  then
-  9  dbms_output.put_line(v_a||' is equal to '||v_b);
- 10  else if (v_a>v_b) then
- 11  dbms_output.put_line(v_a||' is greater than '||v_b);
- 12  else
- 13  dbms_output.put_line(v_a||' is smaller than '||v_b);
- 14  end if;
- 15  end if;
- 16* end;
- 17  /
-Enter value for v_a: 4
-old   5: v_a:=&v_a;
-new   5: v_a:=4;
-Enter value for v_b: 5
-old   6: v_b:=&v_b;
-new   6: v_b:=5;
-4 is smaller than 5
+  4  v_c number;
+  5  begin
+  6  v_a:=&v_a;
+  7  v_b:=&v_b;
+  8  v_c:=&v_c;
+  9  if(v_a=v_b and v_a=v_c)
+ 10  then
+ 11  dbms_output.put_line('all three numbers are equal' );
+ 12     else if(v_a>v_b and v_a>v_c)
+ 13     then
+ 14             dbms_output.put_line(v_a||' is greater than '||v_b||' and '||v_C );
+ 15     else if (v_b>v_c) then
+ 16             dbms_output.put_line(v_b||' is greater than '||v_a||' and '||v_C);
+ 17     else
+ 18             dbms_output.put_line(v_c||' is greater than '||v_b ||' and '||v_a);
+ 19  end if;
+ 20  end if;
+ 21  end if;
+ 22* end;
+ 23  /
+Enter value for v_a: 5
+old   6: v_a:=&v_a;
+new   6: v_a:=5;
+Enter value for v_b: 4
+old   7: v_b:=&v_b;
+new   7: v_b:=4;
+Enter value for v_c: 3
+old   8: v_c:=&v_c;
+new   8: v_c:=3;
+5 is greater than 4 and 3
 
 PL/SQL procedure successfully completed.
