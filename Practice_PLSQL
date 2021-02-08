@@ -29,3 +29,36 @@ end;
  11* end;
  12  /
 JONES 7566 2975 RESEARCH DALLAS                                               --output
+
+
+
+
+
+--if else
+
+  1  declare
+  2  v_a number;
+  3  v_b number;
+  4  begin
+  5  v_a:=&v_a;
+  6  v_b:=&v_b;
+  7  if(v_a=v_b)
+  8  then
+  9  dbms_output.put_line(v_a||' is equal to '||v_b);
+ 10  else if (v_a>v_b) then
+ 11  dbms_output.put_line(v_a||' is greater than '||v_b);
+ 12  else
+ 13  dbms_output.put_line(v_a||' is smaller than '||v_b);
+ 14  end if;
+ 15  end if;
+ 16* end;
+ 17  /
+Enter value for v_a: 4
+old   5: v_a:=&v_a;
+new   5: v_a:=4;
+Enter value for v_b: 5
+old   6: v_b:=&v_b;
+new   6: v_b:=5;
+4 is smaller than 5
+
+PL/SQL procedure successfully completed.
