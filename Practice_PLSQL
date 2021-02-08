@@ -235,3 +235,52 @@ PL/SQL procedure successfully completed.
 SQL>
 
 
+-- CURSOR
+
+
+  1  declare
+  2  begin
+  3  update emp set sal=1.01*sal where deptno=20;
+  4  if sql%found then                                    -- sql is the default name given to the dml query cursor. 
+  5  dbms_output.put_line(sql%rowcount);                  -- get no. of rows affected by query
+  6  end if;
+  7* end;
+SQL> /
+5                                                         --output: five records updated
+
+PL/SQL procedure successfully completed.
+
+
+
+--Explicit CURSOR
+SQL> declare
+  2  cursor c1 is select * from emp;            -- c1 is name of userdefined cursor. cursor points to the data fetched from emp
+  3  v_res emp%rowtype;                         --copy rowtype
+  4  begin
+  5  open c1;                                   -- cursor name c1
+  6  loop
+  7  fetch c1 into v_res;                       -- copy c1 into v_res
+  8  exit when c1%notfound;                     -- loop until there are records
+  9  dbms_output.put_line(v_res.empno||' '||v_res.ename||' '||v_res.sal);
+ 10  end loop;
+ 11  close c1;                                   -- close cursor
+ 12  end;
+ 13  /                                            -- execute plsql
+7369 SMITH 816.08
+7499 ALLEN 1600
+7521 WARD 1250
+7566 JONES 3034.8
+7654 MARTIN 1250
+7698 BLAKE 2850
+7782 CLARK 2450
+7788 SCOTT 3060.3
+7839 KING 5000
+7844 TURNER 1500
+7876 ADAMS 1122.11
+7900 JAMES 950
+7902 FORD 3060.3
+7934 MILLER 1300
+
+PL/SQL procedure successfully completed.
+
+
