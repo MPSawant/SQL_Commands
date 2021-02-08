@@ -235,7 +235,7 @@ PL/SQL procedure successfully completed.
 SQL>
 
 
--- CURSOR
+-- CURSOR 1.Implicit cursor
 
 
   1  declare
@@ -252,7 +252,9 @@ PL/SQL procedure successfully completed.
 
 
 
---Explicit CURSOR
+
+
+--2.Explicit CURSOR
 SQL> declare
   2  cursor c1 is select * from emp;            -- c1 is name of userdefined cursor. cursor points to the data fetched from emp
   3  v_res emp%rowtype;                         --copy rowtype
