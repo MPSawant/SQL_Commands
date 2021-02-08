@@ -13,7 +13,7 @@ end;
 
 
 
---USER DEFINED DATATYPE
+--##USER DEFINED DATATYPE
 --create V_UD_RES (not case sensitive) as a dataype. Create v_RES variable with V_UD_RES as datatype.
 
   1  declare
@@ -70,3 +70,43 @@ new   8: v_c:=3;
 5 is greater than 4 and 3
 
 PL/SQL procedure successfully completed.
+
+--SWITCH CASE
+declare
+a number(3);
+b number(3);
+c varchar2(5);
+begin
+a:=&a;
+b:=&b;
+c:='&c';
+case c
+when 'add' then dbms_output.put_line(a+b);
+when 'multiply' then dbms_output.put_line(a*b);
+when 'sub' then dbms_output.put_line(a-b);
+else
+dbms_output.put_line('invalid option');
+end case;
+end;
+/
+--output
+Enter value for a: 7
+old   6: a:=&a;
+new   6: a:=7;
+Enter value for b: 5
+old   7: b:=&b;
+new   7: b:=5;
+Enter value for c: sub
+old   8: c:='&c';
+new   8: c:='sub';
+2
+
+PL/SQL procedure successfully completed.
+
+
+
+
+
+
+
+
