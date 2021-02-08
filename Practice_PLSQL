@@ -1,0 +1,12 @@
+-- query to get empname,empnumber,sal,deptname,location from emp with employee id 7499
+declare
+v_empno emp.empno%type;
+v_ename emp.ename%type;
+v_sal emp.sal%type;
+v_dname dept.dname%type;
+v_loc  dept.loc%type;
+begin
+select ename,empno,sal,dname,loc into v_ename,v_empno,v_sal,v_dname,v_loc from emp join dept on emp.deptno=dept.deptno where empno=7499;
+dbms_output.put_line(v_ename||v_empno||v_sal||v_dname||v_loc);
+end;
+/
