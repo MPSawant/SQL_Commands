@@ -286,3 +286,37 @@ SQL> declare
 PL/SQL procedure successfully completed.
 
 
+--Q. get empno,ename,sal of all emop from emp using explicit cursor and store enpno,ename,sal into %type variables and display
+
+
+  1  declare
+  2  cursor c1 is select ename,empno,sal from emp;
+  3  v_ename emp.ename%type;
+  4  v_empno emp.empno%type;
+  5  v_sal emp.sal%type;
+  6  begin
+  7  open c1;
+  8  loop
+  9  fetch c1 into v_ename,v_empno,v_sal;
+ 10  exit when c1%notfound;
+ 11  dbms_output.put_line(v_empno||' '||v_ename||' '||v_sal);
+ 12  end loop;
+ 13  close c1;
+ 14* end;
+SQL> /
+7369 SMITH 816.08
+7499 ALLEN 1600
+7521 WARD 1250
+7566 JONES 3034.8
+7654 MARTIN 1250
+7698 BLAKE 2850
+7782 CLARK 2450
+7788 SCOTT 3060.3
+7839 KING 5000
+7844 TURNER 1500
+7876 ADAMS 1122.11
+7900 JAMES 950
+7902 FORD 3060.3
+7934 MILLER 1300
+
+PL/SQL procedure successfully completed.
