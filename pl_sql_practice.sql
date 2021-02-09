@@ -446,3 +446,31 @@ ORA-06512: at line 7
 
 
 --here ORA-20008 is the user defined error code.
+
+
+
+
+
+
+-----------PRoCEDure
+------------------
+
+
+create or replace procedure emp_cursor(v_dno number)
+is
+v_eno emp.empno%type;
+v_en emp.ename%type;
+v_sa emp.sal%type;
+cursor c1 is select empno, ename, sal from emp where deptno=v_dno;
+begin
+open c1;
+loop
+fetch c1 into v_eno,v_en,v_sa;
+exit when c1%notfound;
+dbms_output.put_line(v_eno||' '||v_en);
+end loop;
+close c1;
+end emp_cursor;
+cl scr;
+/
+
