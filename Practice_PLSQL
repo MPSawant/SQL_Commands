@@ -420,4 +420,25 @@ end;
 /
 
 
+-----------------
+PRAGMA EXCEPTION
+-----------------
+--to display message to user for system defined error
+--first alter table and make empno primary key
+--insert record with null value for primary key.
+--not null constraint violated has error code -01400.
 
+
+  1  declare
+  2  v_pragma_exp exception;
+  3  pragma exception_init(v_pragma_exp,-01400);
+  4  begin
+  5  insert into emp(sal,ename) values(9566,'Mansi');
+  6  exception
+  7  when v_pragma_exp then
+  8  dbms_output.put_line('null values for empno not allowed'|| SQLCODE);
+  9* end;
+SQL> /
+null values for empno not allowed-1400
+
+PL/SQL procedure successfully completed.
