@@ -474,3 +474,53 @@ end emp_cursor;
 cl scr;
 /
 
+
+
+
+---------------------------procedure to return value   make use of out keyword
+  1  create or replace procedure prod_add1(a in number, b in number,c out number)
+  2  is
+  3  v_res number(3);
+  4  begin
+  5  v_res:=a+b;
+  6  c:=v_res;
+  7* end;
+SQL> /
+
+---calling procedure
+declare
+v_res number(20);
+begin
+prod_add1(2,3,v_res);
+dbms_output.put_line('sum of two numbers is '|| v_res);
+end;
+/
+
+
+----- to insert a row using procedure
+SQL> select * from emp11;
+
+no rows selected
+
+SQL> create or replace procedure proc_insert(empno number, ename varchar2,sal number)
+  2  is
+  3  begin
+  4  insert into emp11 values (empno,ename,sal);
+  5  end;
+  6  /
+
+Procedure created.
+
+SQL> execute proc_insert(3333,'Mansi',3333);
+
+PL/SQL procedure successfully completed.
+
+SQL> select * from emp11;
+
+     EMPNO ENAME             SAL
+---------- ---------- ----------
+      3333 Mansi            3333
+
+
+---------------also use commit because insert is dml statement
+
