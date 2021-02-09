@@ -327,11 +327,11 @@ PL/SQL procedure successfully completed.
 --OUTPUT the empno and ename of the employees with dept no 20
 
   1  declare
-  2  cursor c4(v_deptno number) is select * from emp                  --pass deptno as parameter
+  2  cursor c4(v_deptno number) is select * from emp                  --pass deptno as parameter . select query returns the records having deptno=20
   3  where deptno=v_deptno;
   4  v_res emp%rowtype;               
   5  begin
-  6  open c4(20);
+  6  open c4(20);                                                     --pass 20 as deptno. OR can declare a variable and use '&' operator to accept user input at runtime.
   7  loop
   8  fetch c4 into v_res;
   9  exit when c4%notfound;
