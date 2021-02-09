@@ -442,3 +442,48 @@ SQL> /
 null values for empno not allowed-1400
 
 PL/SQL procedure successfully completed.
+
+
+
+---------------------------------------------------------------------------------------------------
+PROCEDURE
+---------------------------------------------------------------------------------------------------
+
+1. Create a procedure wel_msg(). Accept msg to display from user and print 'welcome username'.
+
+  create or replace procedure wel_msg(v_msg varchar2)
+  is
+  begin
+  dbms_output.put_line('welcome' || v_msg);
+  end wel_msg;
+    /
+
+Procedure created.
+
+
+
+---to view if the procedure is created
+
+SQL> select object_name from user_procedures;
+
+OBJECT_NAME
+--------------------------------------------------------------------------------
+WEL_MSG
+
+
+--- to execute/call procedure and pass parameter to the procedure
+SQL> execute wel_msg('mansi');
+welcomemansi
+
+PL/SQL procedure successfully completed.
+
+
+--procedure can also be called inside the anonymous block
+SQL> begin
+  2  wel_msg('manu');
+  3  end;
+  4  /
+welcomemanu
+
+PL/SQL procedure successfully completed.
+
