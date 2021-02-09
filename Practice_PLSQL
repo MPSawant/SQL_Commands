@@ -400,5 +400,24 @@ dbms_output.put_line('ERROR found :'||SQLERRM||SQLCODE);                --to pri
 end;
 /
 
+--------------------------------------
+USER DEFINED EXCEPTIONs
+--------------------------------------
+--Q. Raise an exception if the user is not eligible to vote
+
+declare
+v_age number(3);
+v_age_exp exception;
+begin
+v_age:=&v_age;
+if v_age<18 then
+raise v_age_exp;
+end if;
+exception
+when v_age_exp then
+dbms_output.put_line('age should be equal to or greater than 18 to vote');
+end;
+/
+
 
 
