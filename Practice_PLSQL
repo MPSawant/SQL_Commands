@@ -347,3 +347,24 @@ SQL> /
 7902 FORD
 
 PL/SQL procedure successfully completed.
+
+
+--using FOR loop
+
+ 1  declare
+  2  cursor c4 is select * from emp;
+  3  begin
+  4  for v_res in c4 loop
+  5  dbms_output.put_line(v_res.empno||' '||v_res.ename||' ');
+  6  end loop;
+  7* end;
+
+
+---------------------------------------------------------------------------------
+EXCEPTION HANDLING
+---------------------------------------------------------------------------------
+
+
+
+
+
