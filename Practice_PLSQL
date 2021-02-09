@@ -320,3 +320,30 @@ SQL> /
 7934 MILLER 1300
 
 PL/SQL procedure successfully completed.
+
+
+
+--CURSOR with PARAMETERS
+--OUTPUT the empno and ename of the employees with dept no 20
+
+  1  declare
+  2  cursor c4(v_deptno number) is select * from emp                  --pass deptno as parameter
+  3  where deptno=v_deptno;
+  4  v_res emp%rowtype;               
+  5  begin
+  6  open c4(20);
+  7  loop
+  8  fetch c4 into v_res;
+  9  exit when c4%notfound;
+ 10  dbms_output.put_line(v_res.empno||' '||v_res.ename||' ');
+ 11  end loop;
+ 12  close c4;
+ 13* end;
+SQL> /
+7369 SMITH
+7566 JONES
+7788 SCOTT
+7876 ADAMS
+7902 FORD
+
+PL/SQL procedure successfully completed.
