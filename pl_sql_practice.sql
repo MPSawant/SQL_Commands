@@ -582,7 +582,7 @@ select fn_en_cn from dual;
  13  return v_res;
  14  elsif(C='/') then
  15  v_res:=a/b;
- 16  return v_res;
+ 16  return v_res;                                            --should 
  17  else
  18  return 0;
  19  end if;
@@ -590,7 +590,7 @@ select fn_en_cn from dual;
  21  when zero_divide then
  22  dbms_output.put_line('trying to divide by zero');
  23  when others then
- 24  dbms_output.put_line('encountered some error: '||sqlerrm);
+ 24  dbms_output.put_line('encountered some error: '||errcode);
  25* end;
 SQL> /
 
@@ -602,3 +602,28 @@ FN_OPERATOR(2,3,'+')
 --------------------
                    5
  
+function fn_operator1(a in number,b in number,c in varchar2)
+return number is
+v_res number;
+begin
+if(c='+') then
+v_res:=a+b;
+return v_res;
+elsif(C='-') then
+v_res:=a-b;
+return v_res;
+elsif(C='*') then
+v_res:=a*b;
+return v_res;
+elsif(C='/') then
+v_res:=a/b;
+return v_res;
+else
+return 0;
+end if;
+exception
+when zero_divide then
+dbms_output.put_line('trying to divide by zero');
+when others then
+dbms_output.put_line('encountered some error: '||sqlerrm);
+end;
