@@ -363,7 +363,22 @@ PL/SQL procedure successfully completed.
 ---------------------------------------------------------------------------------
 EXCEPTION HANDLING
 ---------------------------------------------------------------------------------
+1. Invalid number exception
 
+  1  declare
+  2  a varchar2(20);
+  3  begin
+  4  select 'mnn'+10 into a from dual;
+  5  exception
+  6  when invalid_number then
+  7  dbms_output.put_line('please perform valid calculation');
+  8* end;
+  9  /
+please perform valid calculation
+
+2. value_error : entered value higher than precision or scale. or incorrect value for given datatype
+3. zero_divide
+4. no_data_found
 
 
 
