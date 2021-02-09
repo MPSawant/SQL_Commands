@@ -419,5 +419,30 @@ dbms_output.put_line('age should be equal to or greater than 18 to vote');
 end;
 /
 
+---EX2 using raise_application_error. the error code shud be between -(20,000 and 20,999). other error codes are already assigned to system defined exceptions.
+
+declare
+v_age number(3);
+v_age_exp exception;
+begin
+v_age:=&v_age;
+if v_age<18 then
+raise_application_error(-20008,'Age should be equal to and greater than 18 to vote');
+end if;
+dbms_output.put_line('valid age');
+end;
+/
+--output
+
+SQL> /
+Enter value for v_age: 1
+old   5: v_age:=&v_age;
+new   5: v_age:=1;
+declare
+*
+ERROR at line 1:
+ORA-20008: Age should be equal to and greater than 18 to vote
+ORA-06512: at line 7
 
 
+--here ORA-20008 is the user defined error code.
