@@ -524,3 +524,81 @@ SQL> select * from emp11;
 
 ---------------also use commit because insert is dml statement
 
+
+--- get src code of procedure
+SQL> select text from user_source where name='PROC_INSERT';
+
+TEXT
+--------------------------------------------------------------------------------
+procedure proc_insert(empno number, ename varchar2,sal number)
+is
+begin
+insert into emp11 values (empno,ename,sal);
+end;
+
+
+----------------------------
+FUNCTIONS
+_____________________----------
+
+ create or replace function fn_en_cn
+  2  return number
+  3  is v_count number;
+  4  begin
+  5  select count(ename) into v_count from emp;
+  6  return v_count;
+  7  end;
+  8  /
+
+
+------to get the output
+
+declare
+v_C number;
+begin
+v_c:=fn_en_cn;
+dbms_output.put_line(v_c);
+end;
+/
+
+----or 
+select fn_en_cn from dual;
+
+
+---------user defined function to add, sub, mul, and divide
+
+  1  create or replace function fn_operator(a in number,b in number,c in varchar2)
+  2  return number is
+  3  v_res number;
+  4  begin
+  5  if(c='+') then
+  6  v_res:=a+b;
+  7  return v_res;
+  8  elsif(C='-') then
+  9  v_res:=a-b;
+ 10  return v_res;
+ 11  elsif(C='*') then
+ 12  v_res:=a*b;
+ 13  return v_res;
+ 14  elsif(C='/') then
+ 15  v_res:=a/b;
+ 16  return v_res;
+ 17  else
+ 18  return 0;
+ 19  end if;
+ 20  exception
+ 21  when zero_divide then
+ 22  dbms_output.put_line('trying to divide by zero');
+ 23  when others then
+ 24  dbms_output.put_line('encountered some error: '||sqlerrm);
+ 25* end;
+SQL> /
+
+Function created.
+
+SQL> select fn_operator(2,3,'+') from dual;
+
+FN_OPERATOR(2,3,'+')
+--------------------
+                   5
+ 
