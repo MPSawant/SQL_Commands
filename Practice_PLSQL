@@ -380,6 +380,25 @@ please perform valid calculation
 3. zero_divide
 4. no_data_found
 
+---more than one exception check:
+
+declare
+a number(2);
+b number(2);
+c number(2);
+begin
+a:=&a;
+b:=&b;
+c=a/b;
+exception
+when invalid_number then
+dbms_output.put_line('please enter valid data');
+when zero_divide then
+dbms_output.put_line('divide by zero error');
+when others then
+dbms_output.put_line('ERROR found :'||SQLERRM||SQLCODE);                --to print error msg and error code
+end;
+/
 
 
 
